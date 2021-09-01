@@ -6,16 +6,6 @@ const title = document.querySelector("#greeting");
 const HIDDEN_CLASSNAME = "hidden";
 const USERNAME_KEY = "username";
 
-// 마우스를 따라다니는 원 효과
-// const circle = document.querySelector(".circle");
-// document.addEventListener("mousemove", (e) => {
-//   const mouseX = e.clientX;
-//   const mouseY = e.clientY;
-
-//   circle.style.left = mouseX + "px";
-//   circle.style.top = mouseY + "px";
-// });
-
 const onLoginSubmit = (event) => {
   event.preventDefault(); // submit 이벤트 방지
 
@@ -33,8 +23,8 @@ const paintTitle = (username) => {
 
 const saveUsername = localStorage.getItem(USERNAME_KEY); // 로컬 스토리지에서 이름 가져오기
 
+// 로컬 스토리지 정보 확인
 if (saveUsername === null) {
-  // 저장된 이름이 없으면
   loginForm.classList.remove(HIDDEN_CLASSNAME); // 로그인 폼이 보임
   loginForm.addEventListener("submit", onLoginSubmit);
 } else {
