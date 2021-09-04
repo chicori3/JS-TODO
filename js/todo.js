@@ -13,19 +13,27 @@ function saveToDos() {
 }
 
 // todo li 제거 함수
-const deleteToDo = (event) => {
+function deleteToDo(event) {
   event.preventDefault();
+  const li = this.parentElement; // this는 event가 발생한 객체
 
-  // i를 클릭했을 경우
-  if (event.target.children.length !== 1) {
-    const li = event.target.parentElement.parentElement;
-    li.remove();
-  } else {
-    // 버튼을 클릭했을 경우
-    const li = event.target.parentElement;
-    li.remove();
-  }
-};
+  // toDos의 id와 li의 id가 일치하면 filter
+  toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));
+  saveToDos(); // 변경된 toDos를 저장
+  li.remove();
+
+  // li.remove();
+
+  //   // i를 클릭했을 경우
+  //   if (event.target.children.length !== 1) {
+  //     const li = event.target.parentElement.parentElement;
+  //     li.remove();
+  //   } else {
+  //     // 버튼을 클릭했을 경우
+  //     const li = event.target.parentElement;
+  //     li.remove();
+  //   }
+}
 
 // input 값을 li로 생성하는 함수
 const paintToDo = (newToDoObj) => {
@@ -57,7 +65,6 @@ const handleToDoSubmit = (event) => {
   toDos.push(newToDoObj);
   paintToDo(newToDoObj);
   saveToDos();
-  console.log(toDos);
 };
 
 toDoForm.addEventListener("submit", handleToDoSubmit);
